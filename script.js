@@ -87,7 +87,7 @@ const getCurrency = (currencies) => {
 };
 
 const updateStats = (count) => {
-    statsEl.textContent = `SHOWING ${count} TARGET${count !== 1 ? 'S' : ''} // REGION: ${currentRegion.toUpperCase()}`;
+    statsEl.textContent = `SHOWING ${count} COUNTRY${count !== 1 ? 'S' : ''} // REGION: ${currentRegion.toUpperCase()}`;
 };
 
 const filterByRegion = (region) => {
