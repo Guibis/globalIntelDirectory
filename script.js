@@ -2,12 +2,14 @@ let allCountries = [];
 let filteredCountries = [];
 let isPopulationSorted = false;
 let currentRegion = 'all';
+let searchTerm = '';
 
 const loadingEl = document.getElementById('loading');
 const errorEl = document.getElementById('error');
 const gridEl = document.getElementById('country-grid');
 const regionFilter = document.getElementById('region-filter');
 const populationToggle = document.getElementById('population-toggle');
+const searchInput = document.getElementById('country-search');
 const statsEl = document.getElementById('stats');
 
 const fetchCountries = async () => {
@@ -90,23 +92,34 @@ const updateStats = (count) => {
     statsEl.textContent = `SHOWING ${count} COUNTRY${count !== 1 ? 'S' : ''} // REGION: ${currentRegion.toUpperCase()}`;
 };
 
-const filterByRegion = (region) => {
-    currentRegion = region;
-    
-    if (region === 'all') {
-        filteredCountries = [...allCountries];
-    } else {
-        filteredCountries = allCountries.filter(country => country.region === region);
+const applyFilters = () => {
+    let result = [...allCountries];
+
+    // Filter by Region
+    if (currentRegion !== 'all') {
+        result = result.filter(country => country.region === currentRegion);
     }
-    
-    applySort();
+
+    // Filter by Search Term
+    if (searchTerm) {
+        const term = searchTerm.toLowerCase();
+        result = result.filter(country => 
+            country.name.common.toLowerCase().includes(term)
+        );
+    }
+
+    // Sort by Population
+    if (isPopulationSorted) {
+        result.sort((a, b) => b.population - a.population);
+    }
+
+    filteredCountries = result;
     renderCountries(filteredCountries);
 };
 
-const applySort = () => {
-    if (isPopulationSorted) {
-        filteredCountries.sort((a, b) => b.population - a.population);
-    }
+const filterByRegion = (region) => {
+    currentRegion = region;
+    applyFilters();
 };
 
 const togglePopulationSort = () => {
@@ -114,18 +127,20 @@ const togglePopulationSort = () => {
     
     if (isPopulationSorted) {
         populationToggle.classList.add('active');
-        filteredCountries.sort((a, b) => b.population - a.population);
     } else {
         populationToggle.classList.remove('active');
-        filterByRegion(currentRegion);
-        return;
     }
     
-    renderCountries(filteredCountries);
+    applyFilters();
 };
 
 regionFilter.addEventListener('change', (e) => {
     filterByRegion(e.target.value);
+});
+
+searchInput.addEventListener('input', (e) => {
+    searchTerm = e.target.value.trim();
+    applyFilters();
 });
 
 populationToggle.addEventListener('click', togglePopulationSort);
