@@ -34,3 +34,54 @@ const getCurrency = (currencies) => {
     const currency = currencies[currencyKeys[0]];
     return `${currency.name} (${currency.symbol || '?'})`;
 };
+
+ const renderCountries = (countries) => {
+    gridEl.innerHTML = '';
+
+    countries.forEach(country => {
+    const card = document.createElement('div');
+    card.className = 'country-card';
+
+    const flag = document.createElement('img');
+    flag.className = 'flag';
+    flag.src = country.flags.png || country.flags.svg;
+    flag.alt = `Flag of ${country.name.common}`;
+
+    const name = document.createElement('div');
+    name.className = 'country-name';
+    name.textContent = country.name.common;
+
+    const infoDiv = document.createElement('div');
+    infoDiv.className = 'country-info';
+
+    const createInfoRow = (label, value) => {
+        const row = document.createElement('div');
+        row.className = 'info-row';
+        
+        const labelSpan = document.createElement('span');
+        labelSpan.className = 'info-label';
+        labelSpan.textContent = label;
+        
+        const valueSpan = document.createElement('span');
+        valueSpan.className = 'info-value';
+        valueSpan.textContent = value;
+        
+        row.appendChild(labelSpan);
+        row.appendChild(valueSpan);
+        return row;
+    };
+
+    infoDiv.appendChild(createInfoRow('Region:', country.region || 'N/A'));
+    infoDiv.appendChild(createInfoRow('Capital:', country.capital?.[0] || 'N/A'));
+    infoDiv.appendChild(createInfoRow('Currency:', getCurrency(country.currencies)));
+    infoDiv.appendChild(createInfoRow('Population:', country.population.toLocaleString()));
+
+    card.appendChild(flag);
+    card.appendChild(name);
+    card.appendChild(infoDiv);
+
+    gridEl.appendChild(card);
+    });
+
+    updateStats(countries.length);
+};
