@@ -89,3 +89,18 @@ const getCurrency = (currencies) => {
 const updateStats = (count) => {
     statsEl.textContent = `SHOWING ${count} TARGET${count !== 1 ? 'S' : ''} // REGION: ${currentRegion.toUpperCase()}`;
 };
+
+const filterByRegion = (region) => {
+    currentRegion = region;
+    
+    if (region === 'all') {
+    filteredCountries = [...allCountries];
+    } else {
+    filteredCountries = allCountries.filter(country => country.region === region);
+    }
+    
+    applySort();
+    renderCountries(filteredCountries);
+};
+
+
