@@ -24,3 +24,13 @@ const fetchCountries = async () => {
     throw new Error(`Failed to fetch country data: ${error.message}`);
     }
 };
+
+const getCurrency = (currencies) => {
+    if (!currencies) return 'N/A';
+    
+    const currencyKeys = Object.keys(currencies);
+    if (currencyKeys.length === 0) return 'N/A';
+    
+    const currency = currencies[currencyKeys[0]];
+    return `${currency.name} (${currency.symbol || '?'})`;
+};
