@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Intel Directory</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+    <h1>🌍 GLOBAL INTEL DIRECTORY</h1>
+    <div class="subtitle">CLASSIFIED // FIELD AGENT ACCESS ONLY</div>
+  </div>
+
+  <div class="controls">
+    <div class="country-searchy">
+        <label for="country-search">SEARCH COUNTRY:</label>
+        <input type="text" id="country-search" placeholder="Search countries...">   
+    </div>
+    <div class="control-group">
+      <label for="region-filter">FILTER BY REGION:</label>
+      <select id="region-filter">
+        <option value="all">All Regions</option>
+        <option value="Africa">Africa</option>
+        <option value="Americas">Americas</option>
+        <option value="Asia">Asia</option>
+        <option value="Europe">Europe</option>
+        <option value="Oceania">Oceania</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label>POPULATION SORT:</label>
+      <div class="toggle-container">
+        <button id="population-toggle" class="toggle-btn">Sort by Population</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats" id="stats"></div>
+
+  <div id="loading" class="loading">
+    ⚡ ACCESSING GLOBAL DATABASE...
+  </div>
+
+  <div id="error" class="error" style="display: none;"></div>
+
+  <div class="country-grid" id="country-grid"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
