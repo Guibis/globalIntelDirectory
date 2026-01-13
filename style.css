@@ -38,4 +38,100 @@ h1 {
     font-size: 0.9em;
     letter-spacing: 2px;
 }
+.controls {
+    display: flex;
+    text-align: center;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#country-search {
+    padding: 10px 15px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #0aa532;
+    border: 2px solid #0aa532;
+    border-radius: 5px;
+    font-family: 'Courier New', monospace;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#country-search:hover {
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+}
+
+
+label {
+    color: #00ff41;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+select {
+    padding: 10px 15px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #0aa532;
+    border: 2px solid #0aa532;
+    border-radius: 5px;
+    font-family: 'Courier New', monospace;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+
+select:hover {
+    background: rgba(0, 255, 65, 0.1);
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+}
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.toggle-btn {
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #888;
+    border: 2px solid #555;
+    border-radius: 5px;
+    font-family: 'Courier New', monospace;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+.toggle-btn.active {
+    background: rgba(0, 255, 65, 0.2);
+    color: #0aa532;
+    border-color: #0aa532;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+}
+
+
+.toggle-btn:hover {
+    border-color: #0aa532;
+}
 
