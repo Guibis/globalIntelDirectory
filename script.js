@@ -123,3 +123,9 @@ const togglePopulationSort = () => {
     
     renderCountries(filteredCountries);
 };
+
+regionFilter.addEventListener('change', (e) => {
+    filterByRegion(e.target.value);
+});
+
+populationToggle.addEventListener('click', togglePopulationSort);
