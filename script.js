@@ -129,3 +129,22 @@ regionFilter.addEventListener('change', (e) => {
 });
 
 populationToggle.addEventListener('click', togglePopulationSort);
+
+const init = async () => {
+    try {
+        loadingEl.style.display = 'block';
+        errorEl.style.display = 'none';
+        
+        allCountries = await fetchCountries();
+        filteredCountries = [...allCountries];
+        
+        loadingEl.style.display = 'none';
+        renderCountries(filteredCountries);
+    } catch (error) {
+        loadingEl.style.display = 'none';
+        errorEl.style.display = 'block';
+        errorEl.textContent = `⚠️ MISSION FAILED: ${error.message}`;
+    }
+};
+
+init();
