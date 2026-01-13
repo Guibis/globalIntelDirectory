@@ -108,3 +108,18 @@ const applySort = () => {
         filteredCountries.sort((a, b) => b.population - a.population);
     }
 };
+
+const togglePopulationSort = () => {
+    isPopulationSorted = !isPopulationSorted;
+    
+    if (isPopulationSorted) {
+        populationToggle.classList.add('active');
+        filteredCountries.sort((a, b) => b.population - a.population);
+    } else {
+        populationToggle.classList.remove('active');
+        filterByRegion(currentRegion);
+        return;
+    }
+    
+    renderCountries(filteredCountries);
+};
